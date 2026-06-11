@@ -1,5 +1,5 @@
 // Calculator module
-// Supported operations: addition (add, +), subtraction (sub, -), multiplication (mul, *), division (div, /)
+// Supported operations: addition (add, +), subtraction (sub, -), multiplication (mul, *), division (div, /), modulo (mod, %), exponentiation (pow, ^), square root (sqrt)
 
 function add(a, b) {
   return a + b;
@@ -20,6 +20,24 @@ function div(a, b) {
   return a / b;
 }
 
+function modulo(a, b) {
+  if (b === 0) {
+    throw new Error('Division by zero');
+  }
+  return a % b;
+}
+
+function power(base, exponent) {
+  return Math.pow(base, exponent);
+}
+
+function squareRoot(n) {
+  if (n < 0) {
+    throw new Error('Square root of negative number');
+  }
+  return Math.sqrt(n);
+}
+
 function calculate(op, a, b) {
   switch (op) {
     case 'add':
@@ -36,9 +54,18 @@ function calculate(op, a, b) {
     case 'div':
     case '/':
       return div(a, b);
+    case 'mod':
+    case '%':
+      return modulo(a, b);
+    case 'pow':
+    case '^':
+      return power(a, b);
+    case 'sqrt':
+    case '√':
+      return squareRoot(a);
     default:
       throw new Error(`Unsupported operation: ${op}`);
   }
 }
 
-module.exports = { add, sub, mul, div, calculate };
+module.exports = { add, sub, mul, div, modulo, power, squareRoot, calculate };
